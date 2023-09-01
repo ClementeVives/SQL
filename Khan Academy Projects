@@ -40,6 +40,9 @@ INSERT INTO badges (date, badge_type, badge_name, energy_points) VALUES ("2015, 
 
 
 
+
+
+
 SELECT badge_name, energy_points FROM badges WHERE badge_type IN ('Sun', 'Earth') 
 ORDER BY energy_points DESC
 LIMIT 10;
@@ -47,6 +50,8 @@ LIMIT 10;
 SELECT badge_name, energy_points FROM badges WHERE badge_type IN ("Meteorite", "Moon","Challenge Patch")
 ORDER BY badge_type DESC
 LIMIT 10;
+
+SELECT badge_name FROM badges WHERE (badge_type='Sun' AND energy_points >150000);
 
 SELECT badge_type, SUM(energy_points) AS total_energy FROM badges 
 
@@ -80,6 +85,9 @@ SELECT COUNT(*),
   WHEN energy_points > 50000 THEN "B"
   WHEN energy_points > 10000 THEN "C"
   ELSE 'D'
+  END as "energy_grade" FROM badges
+  GROUP BY "energy_grade"
+  ORDER BY energy_grade;
   END as "energy_grade" FROM badges
   GROUP BY "energy_grade"
   ORDER BY energy_grade;
