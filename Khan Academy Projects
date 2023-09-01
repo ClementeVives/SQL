@@ -1,0 +1,85 @@
+CREATE TABLE products (id integer primary key, name text, quantity integer, price integer, spice_level text, flavor_type text);
+
+INSERT INTO products VALUES
+(1, 'potato_chips', 20, 1.50, 'low', 'cheese'),(2, 'ramen', 50, 2.50, 'medium', 'shrimp'),(3, 'eggs', 36, 0.5, 'none', 'soy'),(4, 'takkis', 23, 5, 'high', 'hot'),(5, 'pasta', 10, 1.25, 'none', 'flour'),(6, 'doritos', 80, 3, 'medium', 'bbq'),(7, 'cheetos', 20, 2.50, 'low', 'flaming_hot'),(8, 'ruffles', 15,1, 'low', 'onion'),(9, 'tacos', 20, 6.50, 'high', 'mexican'),(10, 'topoqui', 36, 1.25, 'extreme', 'rice'),(11, 'pringle', 10,2.50, 'none', 'garlic'),(12, 'philadelphia', 10,6, 'none', 'onion_and_chieves'),(13, 'bread', 54, 21, 'none', 'butter'),(14, 'dumplings', 100, 3, 'low', 'pork'),(15, 'fried_rice', 10,6, 'medium', 'chinese');
+SELECT * FROM products;
+
+SELECT * FROM products
+WHERE price >=1.25
+ORDER BY price desc;
+
+-------------------------------------------------------------
+
+
+CREATE TABLE badges (id INTEGER PRIMARY KEY AUTOINCREMENT,
+    date TEXT,
+    badge_type TEXT,
+    badge_name TEXT,
+    energy_points INTEGER);
+
+INSERT INTO badges (date, badge_type, badge_name, energy_points) VALUES ("2015, 04/12", "Sun", "Oracle", 0);
+INSERT INTO badges (date, badge_type, badge_name, energy_points) VALUES ("2015, 04/28", "Earth", "Incredible Inspiration", 5000);
+INSERT INTO badges (date, badge_type, badge_name, energy_points) VALUES ("2015, 01/29", "Challenge Patch", "Intro to JS: Drawing & Animation Mastery", 0);
+INSERT INTO badges (date, badge_type, badge_name, energy_points) VALUES ("2014, 12/05", "Meteorite", "Thumbs Up", 0);
+INSERT INTO badges (date, badge_type, badge_name, energy_points) VALUES ("2015, 04/28", "Moon", "1000 Kelvin", 1000);
+INSERT INTO badges (date, badge_type, badge_name, energy_points) VALUES ("2015, 04/25", "Earth", "299,792,458 Meters per Second", 5000);
+INSERT INTO badges (date, badge_type, badge_name, energy_points) VALUES ("2015, 03/20", "Sun", "Da Vinci", 200000);
+INSERT INTO badges (date, badge_type, badge_name, energy_points) VALUES ("2015, 03/02", "Sun", "Newton", 150000);
+INSERT INTO badges (date, badge_type, badge_name, energy_points) VALUES ("2015, 03/02", "Sun", "Hypatia", 125000);
+INSERT INTO badges (date, badge_type, badge_name, energy_points) VALUES ("2015, 02/24", "Sun", "Kepler", 125000);
+INSERT INTO badges (date, badge_type, badge_name, energy_points) VALUES ("2015, 02/24", "Sun", "Copernicus", 80000);
+INSERT INTO badges (date, badge_type, badge_name, energy_points) VALUES ("2015, 02/07", "Sun", "Sally Ride", 35000);
+INSERT INTO badges (date, badge_type, badge_name, energy_points) VALUES ("2015, 01/06", "Sun", "Magellan", 30000);
+INSERT INTO badges (date, badge_type, badge_name, energy_points) VALUES ("2015, 02/24", "Earth", "Guru", 0);
+INSERT INTO badges (date, badge_type, badge_name, energy_points) VALUES ("2014, 12/29", "Earth", "Work Horse", 14000);
+INSERT INTO badges (date, badge_type, badge_name, energy_points) VALUES ("2014, 10/20", "Moon", "Redwood", 0);
+INSERT INTO badges (date, badge_type, badge_name, energy_points) VALUES ("2013, 10/20", "Meteorite", "Cypress", 0);
+INSERT INTO badges (date, badge_type, badge_name, energy_points) VALUES ("2015, 03/18", "Sun", "Millionaire", 0);
+INSERT INTO badges (date, badge_type, badge_name, energy_points) VALUES ("2015, 02/27", "Earth", "Five Times Ten to the Fifth", 0);
+INSERT INTO badges (date, badge_type, badge_name, energy_points) VALUES ("2015, 04/04", "Earth", "Investigator", 0);
+
+
+
+SELECT badge_name, energy_points FROM badges WHERE badge_type IN ('Sun', 'Earth') 
+ORDER BY energy_points DESC
+LIMIT 10;
+
+SELECT badge_name, energy_points FROM badges WHERE badge_type IN ("Meteorite", "Moon","Challenge Patch")
+ORDER BY badge_type DESC
+LIMIT 10;
+
+SELECT badge_type, SUM(energy_points) AS total_energy FROM badges 
+
+GROUP BY badge_type
+
+HAVING total_energy>100000;
+
+SELECT badge_type, SUM(energy_points) as avg_points FROM badges
+GROUP BY badge_type
+ORDER BY avg_points 
+desc; 
+
+SELECT badge_type, AVG(energy_points) as avg_points FROM badges
+GROUP BY badge_type
+ORDER BY avg_points 
+desc; 
+
+  SELECT energy_points,
+  CASE 
+  WHEN energy_points > 100000 THEN "A"
+  WHEN energy_points > 50000 THEN "B"
+  WHEN energy_points > 10000 THEN "C"
+  ELSE 'D'
+  END as "energy_grade" FROM badges
+  GROUP BY "energy_grade"
+  ORDER BY energy_grade;
+
+SELECT COUNT(*),
+  CASE 
+  WHEN energy_points > 100000 THEN "A"
+  WHEN energy_points > 50000 THEN "B"
+  WHEN energy_points > 10000 THEN "C"
+  ELSE 'D'
+  END as "energy_grade" FROM badges
+  GROUP BY "energy_grade"
+  ORDER BY energy_grade;
