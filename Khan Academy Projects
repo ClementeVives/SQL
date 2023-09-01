@@ -9,7 +9,11 @@ WHERE price >=1.25
 ORDER BY price desc;
 
 -------------------------------------------------------------
-
+/*
+Earned Badges
+This table contains badges earned by a user, including the most recent date achieved, the type, the name, the # of energy points earned, and the activity earned from.
+Collected by: https://www.khanacademy.org/profile/chopsor/
+*/
 
 CREATE TABLE badges (id INTEGER PRIMARY KEY AUTOINCREMENT,
     date TEXT,
