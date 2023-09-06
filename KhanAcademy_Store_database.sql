@@ -1,4 +1,6 @@
- CREATE TABLE products (id INTEGER PRIMARY KEY, name TEXT, quantity INTEGER, price INTEGER, spice_level TEXT, flavor_type TEXT);
+/*Create a grocery store database*/
+
+CREATE TABLE products (id INTEGER PRIMARY KEY, name TEXT, quantity INTEGER, price INTEGER, spice_level TEXT, flavor_type TEXT);
 
 INSERT INTO products VALUES
 (1, 'potato_chips', 20, 1.50, 'low', 'cheese'),
