@@ -1,18 +1,43 @@
-CREATE TABLE products (id integer primary key, name text, quantity integer, price integer, spice_level text, flavor_type text);
+ CREATE TABLE products (id INTEGER PRIMARY KEY, name TEXT, quantity INTEGER, price INTEGER, spice_level TEXT, flavor_type TEXT);
 
 INSERT INTO products VALUES
-(1, 'potato_chips', 20, 1.50, 'low', 'cheese'),(2, 'ramen', 50, 2.50, 'medium', 'shrimp'),(3, 'eggs', 36, 0.5, 'none', 'soy'),(4, 'takkis', 23, 5, 'high', 'hot'),(5, 'pasta', 10, 1.25, 'none', 'flour'),(6, 'doritos', 80, 3, 'medium', 'bbq'),(7, 'cheetos', 20, 2.50, 'low', 'flaming_hot'),(8, 'ruffles', 15,1, 'low', 'onion'),(9, 'tacos', 20, 6.50, 'high', 'mexican'),(10, 'topoqui', 36, 1.25, 'extreme', 'rice'),(11, 'pringle', 10,2.50, 'none', 'garlic'),(12, 'philadelphia', 10,6, 'none', 'onion_and_chieves'),(13, 'bread', 54, 21, 'none', 'butter'),(14, 'dumplings', 100, 3, 'low', 'pork'),(15, 'fried_rice', 10,6, 'medium', 'chinese');
+(1, 'potato_chips', 20, 1.50, 'low', 'cheese'),
+(2, 'ramen', 50, 2.50, 'medium', 'shrimp'),
+(3, 'eggs', 36, 0.5, 'none', 'soy'),
+(4, 'takkis', 23, 5, 'high', 'hot'),
+(5, 'pasta', 10, 1.25, 'none', 'flour'),
+(6, 'doritos', 80, 3, 'medium', 'bbq'),
+(7, 'cheetos', 20, 2.50, 'low', 'flaming_hot'),
+(8, 'ruffles', 15,1, 'low', 'onion'),
+(9, 'tacos', 20, 6.50, 'high', 'mexican'),
+(10, 'topoqui', 36, 1.25, 'extreme', 'rice'),
+(11, 'pringle', 10,2.50, 'none', 'garlic'),
+(12, 'philadelphia', 10,6, 'none', 'onion_and_chieves'),
+(13, 'bread', 54, 21, 'none', 'butter'),
+(14, 'dumplings', 100, 3, 'low', 'pork'),
+(15, 'fried_rice', 10,6, 'medium', 'chinese');
+
+/*Return all products*/
+
 SELECT * FROM products;
 
+/*Return AVG price from all prodcuts*/
+
+SELECT AVG(price) FROM products;
+
+/*Return all products where proce is greater or equal to the AVG price*/
+
 SELECT * FROM products
-WHERE price >=1.25
+WHERE price >=4.23
 ORDER BY price desc;
 
+/*Return SUM the quantity of all products*/
 
 SELECT SUM(quantity) FROM products;
+
 -------------------------------------------------------------
-/*
-Earned Badges
+
+/*Earned Badges
 This table contains badges earned by a user, including the most recent date achieved, the type, the name, the # of energy points earned, and the activity earned from.
 Collected by: https://www.khanacademy.org/profile/chopsor/
 */
@@ -44,10 +69,7 @@ INSERT INTO badges (date, badge_type, badge_name, energy_points) VALUES ("2015, 
 INSERT INTO badges (date, badge_type, badge_name, energy_points) VALUES ("2015, 02/27", "Earth", "Five Times Ten to the Fifth", 0);
 INSERT INTO badges (date, badge_type, badge_name, energy_points) VALUES ("2015, 04/04", "Earth", "Investigator", 0);
 
-
-
-
-
+/*Return all badge_names that are related to the badge_type selected ordered by energy_points*/
 
 SELECT badge_name, energy_points FROM badges WHERE badge_type IN ('Sun', 'Earth') 
 ORDER BY energy_points DESC
@@ -57,23 +79,25 @@ SELECT badge_name, energy_points FROM badges WHERE badge_type IN ("Meteorite", "
 ORDER BY badge_type DESC
 LIMIT 10;
 
+/*Return all badge_name that have the greater values*/
+
 SELECT badge_name FROM badges WHERE (badge_type='Sun' AND energy_points >150000);
 
-SELECT badge_type, SUM(energy_points) AS total_energy FROM badges 
+/*Return SUM of all badge_types*/
 
+SELECT badge_type, SUM(energy_points) as sum_points FROM badges
 GROUP BY badge_type
-
-HAVING total_energy>100000;
-
-SELECT badge_type, SUM(energy_points) as avg_points FROM badges
-GROUP BY badge_type
-ORDER BY avg_points 
+ORDER BY sum_points 
 desc; 
+
+/*Return AVG of all badge_types*/
 
 SELECT badge_type, AVG(energy_points) as avg_points FROM badges
 GROUP BY badge_type
 ORDER BY avg_points 
-desc; 
+desc;
+
+/*Return each energy_grade depending on the amount of energy_points*/
 
   SELECT energy_points,
   CASE 
@@ -85,15 +109,15 @@ desc;
   GROUP BY "energy_grade"
   ORDER BY energy_grade;
 
+
+/*Return count of each energy_grade depending on the amount of energy_points*/ 
+
 SELECT COUNT(*),
   CASE 
   WHEN energy_points > 100000 THEN "A"
   WHEN energy_points > 50000 THEN "B"
   WHEN energy_points > 10000 THEN "C"
   ELSE 'D'
-  END as "energy_grade" FROM badges
-  GROUP BY "energy_grade"
-  ORDER BY energy_grade;
   END as "energy_grade" FROM badges
   GROUP BY "energy_grade"
   ORDER BY energy_grade;
