@@ -1,4 +1,4 @@
-/*Create a grocery store database*/
+/*This project utilized data from the Superstore database stored at http://sqlfiddle.com/#!5/ce3dc3*/
 
 CREATE TABLE superstore (
     item_id INTEGER PRIMARY KEY,
