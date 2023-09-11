@@ -1,4 +1,4 @@
-#This analysis utilized the following Fortune 500 dataset:
+/*This project utilized data from the Fortune 500 dataset stored at http://sqlfiddle.com/#!5/814e4c*/
 
 CREATE TABLE fortune_companies (
     company_id INTEGER PRIMARY KEY,
