@@ -44,3 +44,6 @@ INNER JOIN BIT_DB.FebSales Feb
 ON cust.order_id=FEB.orderid
 WHERE length(orderid) = 6
 AND orderid <> 'Order ID';
+
+remove file1.txt
+
