@@ -45,3 +45,16 @@ ON FEB.orderid = cust.order_id
 WHERE Feb.Quantity>2
 AND length(orderid) = 6 
 AND orderid <> 'Order ID'
+
+/*RETURN products sold in Los Angeles in February, and include how many of each were sold*/
+
+SELECT Product, SUM(quantity), location FROM BIT_DB.FebSales
+WHERE location LIKE '%Los Angeles%'
+GROUP BY Product;
+
+/*RETURN how many products where sold in a specific period of time*/
+
+SELECT sum(quantity) FROM BIT_DB.FebSales 
+WHERE orderdate like '02/18/19%';
+
+
