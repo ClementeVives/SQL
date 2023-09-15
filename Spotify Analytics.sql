@@ -65,5 +65,5 @@ FROM BIT_DB.Spotifydata;
 
 /*RETURN SUM of the duration of all songs in minutes*/
 
-SELECT ROUND(SUM((duration_ms)*0.001)/60,2) AS Total_min
+SELECT ROUND(SUM(duration_ms*0.001)/60,2) AS Total_min
 FROM BIT_DB.Spotifydata;
