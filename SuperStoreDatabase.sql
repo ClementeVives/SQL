@@ -27,35 +27,58 @@ VALUES
     (14, 'Cutlery Set', 'Kitchen Supplies', 34.50, 40, 4.4),
     (15, 'Cozy Throw Blanket', 'Furnishings', 24.99, 100, 4.2);
 
-/*Return all products*/
+/*RETURN all products*/
 
 SELECT * FROM superstore;
 
-/*Return order of the items by price*/
+/*RETURN order of the items by price*/
 
 SELECT item_name, price FROM superstore
 ORDER BY price desc;
 
-/*Return MAX price of the items*/
+/*RETURN MAX price of the items*/
 
 SELECT item_name, max(price) FROM superstore;
   
-/*Return AVG price from all prodcuts*/
+/*RETURN AVG price from all prodcuts*/
 
 SELECT AVG(price) FROM superstore;
 
-/*Return all products where proce is greater or equal to the AVG price*/
+/*RETURN all products where proce is greater or equal to the AVG price*/
 
 SELECT * FROM superstore
 WHERE price >=142.35
 ORDER BY price desc;
 
-/*Return SUM the stock_quantity of all products*/
+/*RETURN SUM the stock_quantity of all products*/
 
 SELECT SUM(stock_quantity) FROM superstore;
 
-/*Return SUM price for items in the category of Kitchen Supplies*/
+/*RETURN SUM price for items in the category of Kitchen Supplies*/
 
 SELECT SUM(price), item_name FROM superstore
 WHERE category='Kitchen Supplies'
 ORDER BY item_name
+
+/*RETURN ALTER an existing table by adding a new row AS price_rating*/
+
+ALTER TABLE superstore ADD price_rating TEXT; 
+
+UPDATE superstore SET price_rating = "EXPENSIVE"
+WHERE price >= 200;
+
+UPDATE superstore SET price_rating = "AVERAGE"
+WHERE price >= 75;
+
+UPDATE superstore SET price_rating = "CHEAP"
+WHERE price < 75;
+
+/*RETURN INSERT new data into the new row*/
+
+INSERT INTO superstore (item_id, item_name, category, price, stock_quantity, average_rating, price_rating)
+    VALUES 
+    (16,'Cast Iron Cookware Set', 'Kitchen Supplies', 83.32, 20, 4.5, "AVERAGE");
+
+/*RETURN DELETE data from the table WHERE iten name is "Cast Iron Cookware Set"*/
+
+DELETE FROM superstore WHERE item_name = "Cast Iron Cookware Set";
