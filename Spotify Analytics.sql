@@ -56,7 +56,8 @@ WHEN song_mode = 1 THEN "Major"
 ELSE "Minor"
 END AS "type_of_scale"
 FROM BIT_DB.Spotifydata
-GROUP BY track_name;
+GROUP BY track_name
+ORDER BY type_of_scale;
 
 /*RETURN duration of each song in minutes*/
 
