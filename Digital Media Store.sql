@@ -1,3 +1,4 @@
+/*In this SQL, I'm querying a database to quantify statistics about a digital media store.*/
 /*In this SQL, I'm querying a database with multiple tables in it to quantify statistics about customers, employees, invoices, and order data.*/
 
 /*RETURN Customers who are not in the US*/
